@@ -10,3 +10,11 @@ export const COLOR_PICKER_DEFAULT = [
   "#c4e9ff",
   "#deffce"
 ];
+
+// Color names for toolbar defaults
+export const COLOR_PICKER_NAMES = {
+  "#ffe4e1": "Red",
+  "#e3cbed": "Purple",
+  "#c4e9ff": "Blue",
+  "#deffce": "Green"
+};

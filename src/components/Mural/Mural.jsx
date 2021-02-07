@@ -95,13 +95,20 @@ class Mural extends React.Component {
       }
     );
 
+    // TODO: Consider adding an h1 instead of using `aria-label` on section
     return (
       <div id="Mural" className="Mural" ref={this.mural} tabIndex="-1">
         <SkipNav />
         <Navigation />
         <main id="main" tabIndex="-1">
           <Welcome />
-          <section aria-label="Sticky Notes Board" id="board" tabIndex="-1">
+          <section
+            aria-label={`Sticky Notes Board: Contains ${
+              Object.keys(notes).length
+            } notes`}
+            id="board"
+            tabIndex="-1"
+          >
             {StickyNotes}
           </section>
           <Toolbar />

@@ -4,6 +4,9 @@ import classnames from "classnames";
 import Color from "color";
 import FontAwesomeButton from "../FontAwesomeButton";
 import "./styles.css";
+
+import { COLOR_PICKER_NAMES } from "../../constants";
+
 class StickyNote extends React.Component {
   static propTypes = {
     color: PropTypes.string,
@@ -86,6 +89,28 @@ class StickyNote extends React.Component {
     this.setState({ editMode: false });
   };
 
+  getNoteSummary = () => {
+    const { text, color } = this.props;
+    const maxWords = 5;
+    const words = text.split(" ");
+
+    // Cut off long text to provide a shorter, more scannable summary
+    const shortenText = words.length > maxWords;
+    if (shortenText) {
+      words.length = maxWords;
+    }
+    const summary = words.join(" ").concat(shortenText ? "..." : "");
+
+    // Get accessible color name
+    // TODO: Handle undefined color name better
+    const colorName = COLOR_PICKER_NAMES[color];
+    const noteType = colorName
+      ? `${colorName} Note`
+      : `Note with color ${color}`;
+
+    return `${noteType}: ${summary}`;
+  };
+
   render() {
     const { editMode } = this.state;
     const { id, text, color, height, width, x, y, selected } = this.props;
@@ -101,7 +126,7 @@ class StickyNote extends React.Component {
     const boxShadowColor = Color(color).darken(0.1);
 
     return (
-      <div
+      <article
         className={StickyNoteClassnames}
         style={{
           width,
@@ -109,6 +134,9 @@ class StickyNote extends React.Component {
           transform: `translate(${x}px,${y}px)`,
           zIndex: selected ? "999999" : 1
         }}
+        id={id}
+        tabIndex="-1"
+        aria-label={this.getNoteSummary()}
       >
         <div
           className="container"
@@ -117,7 +145,6 @@ class StickyNote extends React.Component {
             boxShadow: `0px 0px 2px ${boxShadowColor}`,
             padding: selected ? "6px" : "8px"
           }}
-          id={id}
           data-type="sticky-note"
         >
           <p
@@ -137,7 +164,7 @@ class StickyNote extends React.Component {
             handleOnClick={this.handleDelete}
           />
         )}
-      </div>
+      </article>
     );
   }
 }
