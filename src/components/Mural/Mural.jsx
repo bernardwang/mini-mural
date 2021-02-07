@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Announcer from "../Announcer";
 import SkipNav from "../SkipNav";
 import Toolbar from "../Toolbar";
 import BoardNavigation from "../BoardNavigation";
@@ -115,6 +116,7 @@ class Mural extends React.Component {
           </section>
           <Toolbar />
         </main>
+        <Announcer />
       </div>
     );
   }
