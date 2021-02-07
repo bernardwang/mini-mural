@@ -8,6 +8,7 @@ class Announcer extends React.Component {
     dequeueStatus: PropTypes.func
   };
 
+  // TODO: Automatically dequeue status after a new status is detected and announced using componentDidUpdate
   render() {
     const { status = [] } = this.props;
     return (
