@@ -125,6 +125,14 @@ class StickyNote extends React.Component {
       .desaturate(0.3);
     const boxShadowColor = Color(color).darken(0.1);
 
+    // Contains additional details about the note that arent as important (i.e. position, potentially color, or other statuses)
+    // TODO: Translate coordinates into more understandable description (i.e. relative position in rows/cols similar to a table)
+    const additionalDetails = (
+      <span className="visually-hidden" id={`${id}-details`}>
+        {`Position: (${x},${y})`}
+      </span>
+    );
+
     return (
       <article
         className={StickyNoteClassnames}
@@ -137,6 +145,7 @@ class StickyNote extends React.Component {
         id={id}
         tabIndex="-1"
         aria-label={this.getNoteSummary()}
+        aria-describedby={`${id}-details`}
       >
         <div
           className="container"
@@ -164,6 +173,7 @@ class StickyNote extends React.Component {
             handleOnClick={this.handleDelete}
           />
         )}
+        {additionalDetails}
       </article>
     );
   }
