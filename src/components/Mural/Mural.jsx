@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Toolbar from "../Toolbar";
+import Navigation from "../Navigation";
 import StickyNote from "../StickyNote";
 
 import { NOTE_DEFAULT_HEIGHT, NOTE_DEFAULT_WIDTH } from "../../constants";
@@ -95,6 +96,7 @@ class Mural extends React.Component {
 
     return (
       <div id="Mural" className="Mural" ref={this.mural} tabIndex="-1">
+        <Navigation />
         <main>
           <Welcome />
           <section aria-label="Sticky Notes Board" id="board" tabIndex="-1">
