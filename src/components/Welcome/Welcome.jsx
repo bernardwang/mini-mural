@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { isEmpty } from "lodash";
 import logo from "./logo.svg";
 import "./styles.css";
@@ -7,10 +8,13 @@ class Welcome extends React.Component {
   render() {
     const { notes } = this.props;
 
-    if (!isEmpty(notes)) return null;
+    const classes = classNames("Welcome", {
+      "visually-hidden": !isEmpty(notes)
+    });
 
+    // TODO: Find better solution for heading and labeling this section
     return (
-      <div className="Welcome">
+      <div className={classes}>
         <h1 id="welcome">
           <img src={logo} className="logo" alt="Sticky Notes Instructions" />
         </h1>

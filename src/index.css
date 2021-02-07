@@ -2,3 +2,15 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* hide visually, but still available for screenreaders */
+.visually-hidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal;
+}
