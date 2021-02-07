@@ -1,0 +1,11 @@
+.SkipNav {
+  left: 0;
+  padding: 1rem;
+  position: absolute;
+  top: -9999px;
+  z-index: 999999;
+}
+.SkipNav:focus {
+  left: 5rem;
+  top: 0.5rem;
+}

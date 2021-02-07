@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import SkipNav from "../SkipNav";
 import Toolbar from "../Toolbar";
 import Navigation from "../Navigation";
 import StickyNote from "../StickyNote";
@@ -96,8 +97,9 @@ class Mural extends React.Component {
 
     return (
       <div id="Mural" className="Mural" ref={this.mural} tabIndex="-1">
+        <SkipNav />
         <Navigation />
-        <main>
+        <main id="main" tabIndex="-1">
           <Welcome />
           <section aria-label="Sticky Notes Board" id="board" tabIndex="-1">
             {StickyNotes}
