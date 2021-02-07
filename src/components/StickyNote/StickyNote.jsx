@@ -6,9 +6,11 @@ import FontAwesomeButton from "../FontAwesomeButton";
 import "./styles.css";
 
 import { getNoteSummary } from "../../utils";
+import { enqueueStatus } from "../../actions/status-actions";
 
 class StickyNote extends React.Component {
   static propTypes = {
+    notes: PropTypes.object,
     color: PropTypes.string,
     height: PropTypes.string,
     width: PropTypes.string,
@@ -18,7 +20,8 @@ class StickyNote extends React.Component {
     setSelectedNote: PropTypes.func,
     pushSelectedNote: PropTypes.func,
     updateNote: PropTypes.func,
-    deleteNote: PropTypes.func
+    deleteNote: PropTypes.func,
+    enqueueStatus: PropTypes.func
   };
 
   static defaultProps = {
@@ -63,7 +66,11 @@ class StickyNote extends React.Component {
   };
 
   handleDelete = () => {
-    const { id, deleteNote } = this.props;
+    const { id, notes, deleteNote, enqueueStatus } = this.props;
+    const note = notes[id];
+
+    // TODO: Handle status for other actions
+    enqueueStatus(`Deleted ${getNoteSummary(note.color, note.text)}`);
     deleteNote(id);
   };
 

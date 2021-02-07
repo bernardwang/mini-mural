@@ -3,9 +3,11 @@ import { bindActionCreators } from "redux";
 import StickyNote from "./StickyNote";
 import { setSelectedNote, pushSelectedNote } from "../../actions/mural-actions";
 import { deleteNote, updateNote } from "../../actions/notes-actions";
+import { enqueueStatus } from "../../actions/status-actions";
 
 const mapStateToProps = state => {
   return {
+    notes: state.notes,
     multipleSelection: state.mural.multipleSelection
   };
 };
@@ -16,7 +18,8 @@ const mapDispatchToProps = dispatch => {
       setSelectedNote,
       pushSelectedNote,
       updateNote,
-      deleteNote
+      deleteNote,
+      enqueueStatus
     },
     dispatch
   );
