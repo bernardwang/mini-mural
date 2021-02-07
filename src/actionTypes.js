@@ -17,3 +17,7 @@ export const COLOR_SET = "COLOR_SET";
 // Clipboard Actions
 export const CLIPBOARD_ADD = "CLIPBOARD_ADD";
 export const CLIPBOARD_CLEAR = "CLIPBOARD_CLEAR";
+
+// Status Actions
+export const ENQUEUE_STATUS = "ENQUEUE_STATUS";
+export const DEQUEUE_STATUS = "DEQUEUE_STATUS";
