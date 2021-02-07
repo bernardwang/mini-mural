@@ -171,6 +171,7 @@ class StickyNote extends React.Component {
           <FontAwesomeButton
             faClass={"fa fa-trash-o"}
             handleOnClick={this.handleDelete}
+            summary={this.getNoteSummary()}
           />
         )}
         {additionalDetails}

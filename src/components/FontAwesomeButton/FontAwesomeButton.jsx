@@ -5,15 +5,20 @@ import "./styles.css";
 class FontAwesomeButton extends React.Component {
   static propTypes = {
     faClass: PropTypes.string.isRequired,
-    handleOnClick: PropTypes.func
+    handleOnClick: PropTypes.func,
+    summary: PropTypes.string.isRequired
   };
 
   render() {
-    const { faClass, handleOnClick } = this.props;
+    const { faClass, handleOnClick, summary } = this.props;
     return (
-      <div className="icon" onClick={handleOnClick}>
+      <button
+        className="icon"
+        onClick={handleOnClick}
+        aria-label={`Delete ${summary}`}
+      >
         <i className={faClass} aria-hidden="true" />
-      </div>
+      </button>
     );
   }
 }
