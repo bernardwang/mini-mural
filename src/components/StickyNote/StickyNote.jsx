@@ -5,7 +5,7 @@ import Color from "color";
 import FontAwesomeButton from "../FontAwesomeButton";
 import "./styles.css";
 
-import { COLOR_PICKER_NAMES } from "../../constants";
+import { getNoteSummary } from "../../utils";
 
 class StickyNote extends React.Component {
   static propTypes = {
@@ -89,28 +89,6 @@ class StickyNote extends React.Component {
     this.setState({ editMode: false });
   };
 
-  getNoteSummary = () => {
-    const { text, color } = this.props;
-    const maxWords = 5;
-    const words = text.split(" ");
-
-    // Cut off long text to provide a shorter, more scannable summary
-    const shortenText = words.length > maxWords;
-    if (shortenText) {
-      words.length = maxWords;
-    }
-    const summary = words.join(" ").concat(shortenText ? "..." : "");
-
-    // Get accessible color name
-    // TODO: Handle undefined color name better
-    const colorName = COLOR_PICKER_NAMES[color];
-    const noteType = colorName
-      ? `${colorName} Note`
-      : `Note with color ${color}`;
-
-    return `${noteType}: ${summary}`;
-  };
-
   render() {
     const { editMode } = this.state;
     const { id, text, color, height, width, x, y, selected } = this.props;
@@ -124,6 +102,8 @@ class StickyNote extends React.Component {
       .darken(0.4)
       .desaturate(0.3);
     const boxShadowColor = Color(color).darken(0.1);
+
+    const summary = getNoteSummary(color, text);
 
     // Contains additional details about the note that arent as important (i.e. position, potentially color, or other statuses)
     // TODO: Translate coordinates into more understandable description (i.e. relative position in rows/cols similar to a table)
@@ -144,7 +124,7 @@ class StickyNote extends React.Component {
         }}
         id={id}
         tabIndex="-1"
-        aria-label={this.getNoteSummary()}
+        aria-label={summary}
         aria-describedby={`${id}-details`}
       >
         <div
@@ -171,7 +151,7 @@ class StickyNote extends React.Component {
           <FontAwesomeButton
             faClass={"fa fa-trash-o"}
             handleOnClick={this.handleDelete}
-            summary={this.getNoteSummary()}
+            summary={summary}
           />
         )}
         {additionalDetails}

@@ -5,7 +5,7 @@ import "./styles.css";
 
 function Navigation() {
   return (
-    <nav className="Navigation visually-hidden">
+    <nav className="Navigation visually-hidden" aria-label="Main Navigation">
       <ul>
         <li>
           <a href="#welcome">Instructions</a>
