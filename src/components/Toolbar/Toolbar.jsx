@@ -6,7 +6,7 @@ import "./styles.css";
 class Toolbar extends React.Component {
   render() {
     return (
-      <div className="Toolbar">
+      <div className="Toolbar" id="toolbar" tabIndex="-1">
         <ColorPicker />
         <ClipboardManager />
       </div>

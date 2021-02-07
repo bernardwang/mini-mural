@@ -11,7 +11,9 @@ class Welcome extends React.Component {
 
     return (
       <div className="Welcome">
-        <img src={logo} className="logo" alt="logo" />
+        <h1 id="welcome">
+          <img src={logo} className="logo" alt="Sticky Notes Instructions" />
+        </h1>
         <div className="instructions">
           <p>
             Add Note: <span className="key">Double Click</span>
